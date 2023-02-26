@@ -12,7 +12,7 @@ class TopWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomAppBar(),
+        CustomAppBar(onTap: () {}),
         const Padding(
           padding: EdgeInsets.only(left: 32.0, top: 32),
           child: Text(

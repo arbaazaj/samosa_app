@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:samosa_app/themes/colors.dart';
+import 'package:samosa_app/widgets/blur_card_widget.dart';
 import 'package:samosa_app/widgets/custom_app_bar.dart';
-import 'package:samosa_app/widgets/custom_button.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -11,6 +9,7 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // This applies background texture and gradient.
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -29,92 +28,41 @@ class ProductPage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const Flexible(child: CustomAppBar(imageName: 'assets/back.png')),
             SizedBox(
               height: MediaQuery.of(context).size.height,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
+                  // Background Samosa Image
+                  // This is on the bottom of the Stack.
                   AspectRatio(
                     aspectRatio: 2 / 3,
-                    child: Image.asset(
-                      'assets/bowl_of_samosa.png',
-                      fit: BoxFit.cover,
-                      width: 500,
+                    child: Container(
                       height: 500,
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.92,
-                        height: MediaQuery.of(context).size.height * 0.6,
-                        decoration: BoxDecoration(
-                          boxShadow: const [
-                            BoxShadow(
-                              blurRadius: 30.0,
-                              spreadRadius: 20.0,
-                              blurStyle: BlurStyle.outer,
-                            )
-                          ],
-                          color: Colors.yellow,
-                          borderRadius: BorderRadius.circular(64.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(32.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Spicy',
-                                style: TextStyle(
-                                  color: lightOrange,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 24.0,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              const Text(
-                                'Chinese Samosa',
-                                style: TextStyle(
-                                  height: 1.1,
-                                  color: lightWhite,
-                                  fontSize: 48,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20.0,
-                              ),
-                              Text(
-                                'Chinese samosa a deep-fried snack'
-                                ' prepared with homemade '
-                                'pastry sheets and tasty noodles stuffing.',
-                                style: TextStyle(
-                                  color: Colors.amber.shade800,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 17.0,
-                                ),
-                              ),
-                              const SizedBox(height: 10.0),
-                              const Text(
-                                '₹ 180',
-                                style: TextStyle(
-                                  color: lightWhite,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 40.0),
-                              const Center(
-                                  child: CustomButton(buttonRadius: 12.0)),
-                            ],
+                      width: 500,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          colorFilter: ColorFilter.mode(
+                              Colors.black26, BlendMode.darken),
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            'assets/bowl_of_samosa.png',
                           ),
                         ),
+                      ),
+                    ),
+                  ),
+                  // Blur Card
+                  // This is in the middle of the Stack.
+                  const BlurCardWidget(),
+                  // Top Navigation Bar
+                  // This is on the top of the Stack.
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: CustomAppBar(
+                        imageName: 'assets/back.png',
+                        onTap: () => Navigator.pop(context),
                       ),
                     ),
                   ),
