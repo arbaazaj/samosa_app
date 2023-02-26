@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:samosa_app/themes/colors.dart';
+import 'package:samosa_app/widgets/custom_bottom_navbar_widget.dart';
 import 'package:samosa_app/widgets/item_card_widget.dart';
 import 'package:samosa_app/widgets/top_widget.dart';
 
@@ -15,27 +16,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      // bottomNavigationBar: Padding(
-      //   padding: const EdgeInsets.only(bottom: 16.0, top: 16.0, left: 32.0, right: 32.0),
-      //   child: BottomNavigationBar(
-      //     selectedItemColor: Colors.white,
-      //     unselectedItemColor: veryLightWhite,
-      //     items: const [
-      //       BottomNavigationBarItem(
-      //         label: 'Home',
-      //         icon: Icon(Icons.home_outlined),
-      //       ),
-      //       BottomNavigationBarItem(
-      //         label: 'Search',
-      //         icon: Icon(Icons.search_outlined),
-      //       ),
-      //       BottomNavigationBarItem(
-      //         label: 'Profile',
-      //         icon: Icon(Icons.account_circle_outlined),
-      //       ),
-      //     ],
-      //   ),
-      // ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -54,40 +34,15 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const TopWidget(),
-            const SizedBox(
-              height: 8.0,
-            ),
-            const ItemCard(),
-            Padding(
-              padding:
-                  const EdgeInsets.only(left: 32.0, right: 32.0, top: 32.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(18.0),
-                child: BottomNavigationBar(
-                  currentIndex: 0,
-                  selectedItemColor: Colors.white,
-                  unselectedItemColor: veryLightWhite,
-                  elevation: 10.0,
-                  iconSize: 26.0,
-                  items: const [
-                    BottomNavigationBarItem(
-                      label: 'Home',
-                      icon: Icon(Icons.home_outlined),
-                    ),
-                    BottomNavigationBarItem(
-                      label: 'Search',
-                      icon: Icon(Icons.search_outlined),
-                    ),
-                    BottomNavigationBarItem(
-                      label: 'Profile',
-                      icon: Icon(Icons.account_circle_outlined),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          children: const [
+            // Custom App
+            TopWidget(),
+            // Spacing
+            SizedBox(height: 8.0),
+            // Product card
+            ItemCard(),
+            // Bottom Navigation Bar
+            CustomBottomNavBar(),
           ],
         ),
       ),
