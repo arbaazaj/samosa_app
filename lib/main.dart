@@ -11,11 +11,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Samosa App',
       theme: ThemeData(
+        brightness: Brightness.dark,
         primarySwatch: Colors.blue,
+        iconTheme: const IconThemeData(
+          color: Colors.yellow,
+        ),
+        fontFamily: 'Poppins',
       ),
-      home: const HomePage(title: 'Samosa App'),
+      home: const HomePage(),
     );
   }
 }
